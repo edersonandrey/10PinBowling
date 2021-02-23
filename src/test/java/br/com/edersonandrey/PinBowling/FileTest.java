@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import br.com.edersonandrey.pinbowling.exception.InvalidContentFileException;
 import br.com.edersonandrey.pinbowling.exception.InvalidFileException;
 import br.com.edersonandrey.pinbowling.exception.InvalidFormatFileException;
+import br.com.edersonandrey.pinbowling.model.Turn;
 import br.com.edersonandrey.pinbowling.utils.FileUtils;
 
 @SpringBootTest
@@ -96,8 +98,13 @@ public class FileTest {
 			printFile.println("Ederson\t10");
 			printFile.println("Ederson\t10");
 			printFile.close();
-			FileUtils.getTurnsFromFile(file);
-			assertTrue(true);
+			List<Turn> turns = FileUtils.getTurnsFromFile(file);
+			assertEquals(turns.get(0).getPinsDown(), "10");
+			assertEquals(turns.get(1).getPinsDown(), "10");
+			assertEquals(turns.get(2).getPinsDown(), "10");
+			assertEquals(turns.get(3).getPinsDown(), "10");
+			assertEquals(turns.get(9).getPinsDown(), "10");
+			
 		} catch (IOException e) {
 			assertNotEquals(new IOException().getMessage(), e.getMessage());
 		} catch (InvalidContentFileException e) {
@@ -122,8 +129,8 @@ public class FileTest {
 				printFile.println("Ederson\t10");
 				printFile.println("Ederson\t10");
 				printFile.close();
-				FileUtils.getTurnsFromFile(file);
-				assertTrue(true);
+				List<Turn> turns = FileUtils.getTurnsFromFile(file);
+				assertEquals(turns.get(10).getPinsDown(), "10");
 			} catch (IOException e) {
 				assertNotEquals(new IOException().getMessage(), e.getMessage());
 			} catch (InvalidContentFileException e) {

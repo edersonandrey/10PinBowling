@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.edersonandrey</groupId>
 	<artifactId>10PinBowling</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>10PinBowling</name>
 	<description>Project to calculate score of 10 pin bowling from a text file</description>
 	<properties>
